@@ -1,0 +1,79 @@
+<svg width="100%" viewBox="0 0 680 860" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- User mode container -->
+<rect x="40" y="24" width="420" height="490" rx="16" fill="none" stroke="#888780" stroke-width="0.5" stroke-dasharray="5 3"/>
+<text font-family="Arial, sans-serif" font-size="12" fill="#888780" x="56" y="44">User mode</text>
+
+<!-- Privilege boundary line -->
+<line x1="40" y1="528" x2="460" y2="528" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text font-family="Arial, sans-serif" font-size="12" fill="#888780" x="470" y="532">Privilege boundary</text>
+
+<!-- Kernel mode container -->
+<rect x="40" y="544" width="420" height="110" rx="16" fill="none" stroke="#888780" stroke-width="0.5" stroke-dasharray="5 3"/>
+<text font-family="Arial, sans-serif" font-size="12" fill="#888780" x="56" y="564">Kernel mode</text>
+
+<!-- Box 1: Win32 API -->
+<rect x="110" y="54" width="280" height="52" rx="8" fill="#1D9E75" stroke="#0F6E56" stroke-width="0.5"/>
+<text font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#E1F5EE" x="250" y="75" text-anchor="middle" dominant-baseline="central">Win32 API</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#9FE1CB" x="250" y="95" text-anchor="middle" dominant-baseline="central">kernel32.dll / kernelbase.dll</text>
+
+<!-- Arrow 1 -->
+<line x1="250" y1="106" x2="250" y2="134" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text font-family="Arial, sans-serif" font-size="12" fill="#888780" x="262" y="124" dominant-baseline="central">e.g. VirtualAlloc()</text>
+
+<!-- Box 2: ntdll -->
+<rect x="110" y="136" width="280" height="52" rx="8" fill="#1D9E75" stroke="#0F6E56" stroke-width="0.5"/>
+<text font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#E1F5EE" x="250" y="157" text-anchor="middle" dominant-baseline="central">ntdll.dll</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#9FE1CB" x="250" y="177" text-anchor="middle" dominant-baseline="central">NtAllocateVirtualMemory stub</text>
+
+<!-- EDR hook callout -->
+<line x1="390" y1="162" x2="470" y2="162" stroke="#E24B4A" stroke-width="0.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<rect x="472" y="142" width="166" height="44" rx="6" fill="none" stroke="#E24B4A" stroke-width="0.5" stroke-dasharray="4 3"/>
+<text font-family="Arial, sans-serif" font-size="12" fill="#E24B4A" x="555" y="159" text-anchor="middle">EDR hooks live here</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#E24B4A" x="555" y="176" text-anchor="middle">redirect to EDR agent</text>
+
+<!-- Arrow 2 -->
+<line x1="250" y1="188" x2="250" y2="220" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+<text font-family="Arial, sans-serif" font-size="12" fill="#888780" x="262" y="208" dominant-baseline="central">loads SSN into eax</text>
+
+<!-- Box 3: Syscall stub -->
+<rect x="110" y="222" width="280" height="52" rx="8" fill="#1D9E75" stroke="#0F6E56" stroke-width="0.5"/>
+<text font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#E1F5EE" x="250" y="243" text-anchor="middle" dominant-baseline="central">Syscall stub</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#9FE1CB" x="250" y="263" text-anchor="middle" dominant-baseline="central">mov eax, SSN / syscall</text>
+
+<!-- Arrow 3 -->
+<line x1="250" y1="274" x2="250" y2="306" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- Box 4: CPU -->
+<rect x="110" y="308" width="280" height="52" rx="8" fill="#BA7517" stroke="#854F0B" stroke-width="0.5"/>
+<text font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#FAEEDA" x="250" y="329" text-anchor="middle" dominant-baseline="central">syscall instruction</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#FAC775" x="250" y="349" text-anchor="middle" dominant-baseline="central">CPU privilege transition</text>
+
+<!-- Arrow 4 -->
+<line x1="250" y1="360" x2="250" y2="392" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- Box 5: Kernel syscall handler -->
+<rect x="110" y="394" width="280" height="52" rx="8" fill="#1D9E75" stroke="#0F6E56" stroke-width="0.5"/>
+<text font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#E1F5EE" x="250" y="415" text-anchor="middle" dominant-baseline="central">Kernel syscall handler</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#9FE1CB" x="250" y="435" text-anchor="middle" dominant-baseline="central">looks up SSN in SSDT</text>
+
+<!-- Arrow 5 crosses boundary -->
+<line x1="250" y1="446" x2="250" y2="568" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+<!-- Box 6: Kernel function -->
+<rect x="110" y="572" width="280" height="52" rx="8" fill="#534AB7" stroke="#3C3489" stroke-width="0.5"/>
+<text font-family="Arial, sans-serif" font-size="14" font-weight="500" fill="#EEEDFE" x="250" y="593" text-anchor="middle" dominant-baseline="central">Kernel function</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#AFA9EC" x="250" y="613" text-anchor="middle" dominant-baseline="central">executes privileged operation</text>
+
+<!-- Bypass annotation -->
+<rect x="40" y="680" width="600" height="72" rx="8" fill="none" stroke="#E24B4A" stroke-width="0.5" stroke-dasharray="4 3"/>
+<text font-family="Arial, sans-serif" font-size="12" font-weight="500" fill="#E24B4A" x="56" y="702">Direct syscalls bypass ntdll entirely</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#E24B4A" x="56" y="720">Your code invokes the syscall stub directly, skipping the hooked</text>
+<text font-family="Arial, sans-serif" font-size="12" fill="#E24B4A" x="56" y="736">ntdll functions — the EDR never sees the call.</text>
+
+</svg>
