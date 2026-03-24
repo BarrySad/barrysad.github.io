@@ -5,8 +5,7 @@ categories: [CTF Writeups, Proving Grounds]
 tags: [spring, CVE-2024-38821, path traversal, privilege escalation, linux, cron, linpeas, pspy, ftp, john]
 ---
 
-Proving Grounds is Offensive Security's practice lab platform — essentially a range of intentionally vulnerable machines that are great for sharpening practical pen testing skills. This is a writeup for **SpringAuth_attack**, rated Intermediate with a community rating of "Very Hard." It involves exploiting a real CVE in a Java Spring Boot application to leak credentials, followed by a classic cron-based privilege escalation. I finished it in 3 hours 13 minutes.
-
+Proving Grounds is Offensive Security's practice lab platform. This is a writeup for the lab **SpringAuth_attack**, rated Intermediate with a community rating of "Very Hard." It involves exploiting a real CVE in a Java Spring Boot application to leak credentials, followed by a classic cron-based privilege escalation.
 ---
 
 ## Recon
