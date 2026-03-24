@@ -5,6 +5,16 @@ categories: [Malware Development, Syscalls]
 tags: [syscalls, evasion, windows internals, EDR, red team, ntdll, win32]
 ---
 
+Direct syscalls are a common topic in offensive security,
+especially when talking about EDR evasion. Many common Windows API calls that are 
+useful for executing processes are hooked and monitored by EDR systems. Calling functions such as 
+`VirtualAlloc` will very quickly get an unknown executable flagged as malicious. In order
+to evade detection and still use these suspicious functions, we can completely bypass the standard 
+API layers and call the function directly.
+
+
+
+
 If you've spent any time in the offensive security space, you've probably 
 heard the term "syscall" thrown around — usually in the context of EDR 
 evasion. Tools like SysWhispers3 make it easy to drop in direct syscalls 
