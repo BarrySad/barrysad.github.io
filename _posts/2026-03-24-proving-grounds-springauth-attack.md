@@ -51,7 +51,7 @@ Password cracked. Inside the zip was a single file `Structure.png` showing the p
 
 ![Spring Boot project structure](/assets/img/springauth/04-project-structure.png)
 
-This immediately gave me a useful map of the application's file layout. The `static/` directory stood out — it contained a `config/` folder with a file simply called `config`. That's interesting.
+This immediately gave me a useful map of the application's file layout. The `static/` directory stood out. It contained a `config/` folder with a file simply called `config`. That's interesting.
 
 ---
 
@@ -114,7 +114,7 @@ cat /etc/crontab
 ls -l /etc/cron*
 ```
 
-![Manual cron enumeration — nothing useful](/assets/img/springauth/09-cron-manual.png)
+![Manual cron enumeration nothing useful](/assets/img/springauth/09-cron-manual.png)
 
 Nothing immediately exploitable. None of the jobs were writable by the `dev` user.
 
