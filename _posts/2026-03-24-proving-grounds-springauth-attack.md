@@ -176,7 +176,7 @@ The final flag was in `/root/proof.txt`.
 
 ## Reflection
 
-Finished in **3 hours 13 minutes 44 seconds** which I am pretty happy with that for an Intermediate/Very Hard rated machine, but there are definitely areas I could improve in.
+Finished in **3 hours 13 minutes 44 seconds** which I am pretty happy with considering this is an Intermediate/Very Hard rated machine, but there are definitely areas I could improve in.
 
 The biggest time sink was the path traversal phase. I spent a lot of time guessing trying different paths that led nowhere before getting the right one.
 
