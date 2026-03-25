@@ -1,6 +1,6 @@
 ---
-title: "Proving Grounds: Needle. Writeup"
-date: 2026-03-24
+title: "Proving Grounds: Needle Writeup"
+date: 2026-03-25
 categories: [CTF Writeups, Proving Grounds]
 tags: [XSLT Injection, BurpSuite, HTTP Header Manipulation, SVG XSS]
 ---
