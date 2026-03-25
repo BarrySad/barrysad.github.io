@@ -29,7 +29,9 @@ Unsurprisingly, I couldn't do much of anything with this yet. So, I moved on to 
 
 ![needle clinic](/assets/img/needle/03-needle-clinicSite.png)
 
-I immediately noticed a few things that looked promising. There's a login page and a contact page, both of which could be great options for a potential web application exploit. Before I started poking around at the login and contact pages, I decided to try directory enumeration with gobuster (inconsistencies in IP addresses used throughout this writeup is caused by stopping and starting the lab):
+I immediately noticed a few things that looked promising. There's a login page and a contact page, both of which could be great options for a potential web application exploit. 
+
+Before I started poking around at the login and contact pages, I decided to try directory enumeration with gobuster (inconsistencies in IP addresses used throughout this writeup is caused by stopping and starting the lab):
 
 ```bash
 gobuster dir -u http://192.168.196.161 -w /usr/share/wordlists/dirbuster/directory-list-2.3-medium.txt -x php,html,js,txt,asp,aspx,jsp,xsl
@@ -37,7 +39,7 @@ gobuster dir -u http://192.168.196.161 -w /usr/share/wordlists/dirbuster/directo
 
 ![gobuster output](/assets/img/needle/05-needle-gobuster.png)
 
-As you can see, there's a lot of very helpful information here. The ones that stood out the most to me were files, ```dashboard.php```, ```process.php```, and ```xsl```. This alone indicates that there is a dashboard of some sort, and that trying to access it redirects to login.php. This is a great indication that whatever is here requires an account with some sort of privileges to access.
+As you can see, there's a lot of very helpful information here. The ones that stood out the most to me were ```files```, ```dashboard.php```, ```process.php```, and ```xsl```. This alone indicates that there is a dashboard of some sort, and that trying to access it redirects to login.php. This is a great indication that whatever is here requires an account with some sort of privileges to access.
 
 I dcecided to quickly check out ```/files/``` and ```/assets/``` since they returned 301 OK statuses, meaning I could reach them right away. Unfortunately there wasn't anything helpfule here at all, just the static files the website serves for images and styling.
 
