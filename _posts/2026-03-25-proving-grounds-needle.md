@@ -122,7 +122,7 @@ The XSL file itself looked like this:
 
 ![discharge_summary.xsl](/assets/img/needle/12-needle-discharge_summary.png)
 
-It might not look like much, but this gave us all we needed to finish off this lab.
+It might not look like much, but this gave me all I needed to finish off this lab.
 
 ## RCE!!!
 
