@@ -159,8 +159,10 @@ And there we go, first and only flag captured.
 ## Reflection
 This one definitely took me a bit of time, finishing at a little over 6 hours. 
 
-I definitely left it open for an hour or two while I wasn't working on it, but this one still took a bit. I'm still happy that I got through it in less than a day though. The http header manipulation took a lot of trial and error, while I'm sure the solution might've been obvious to some, it definitely wasn't to me. 
+I definitely left it open for an hour or two while I wasn't working on it, but this one still took a bit. I'm happy that I got through it in less than a day though. 
 
-At least now I know to try that if I have to do a similar exploit in the future.
+The http header manipulation took a lot of trial and error, while I'm sure the solution might've been obvious to some, it definitely wasn't to me. 
+
+At least I know to try that now if I have to do something similar in the future.
 
 **Tools used:** nmap, gobuster, curl, Burp Suite
